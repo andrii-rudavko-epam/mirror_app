@@ -13,11 +13,28 @@
 <body>
   <video id="mirror" width="100%" height="100%" autoplay></video>
 </body>
+
 <script>
   navigator.mediaDevices.getUserMedia({ video: true })
     .then(streams => {
       document.getElementById('mirror').srcObject = streams
     })
+
+  const EXIT_CODE = 27
+  function catchExitButton(e) {
+    if (e.keyCode === EXIT_CODE) {
+      window.VIZIO && window.VIZIO.exitApplication()
+    }
+  }
+
+  document.addEventListener('VIZIO_LIBRARY_DID_LOAD',
+    function (event) {
+      window.addEventListener("keydown", catchExitButton, true);
+    },
+    false
+  )
+
 </script>
+<script src="http://localhost:12345/scfs/cl/jss/vizio-companion-lib.js"></script>
 
 </html>
