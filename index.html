@@ -5,10 +5,8 @@
   <video id="mirror" width="100%" height="100%" autoplay></video>
 </body>
 <script>
-  navigator.mediaDevices.getUserMedia(
-    { video: true })
+  navigator.mediaDevices.getUserMedia({ video: true })
     .then(streams => {
-      console.log(streams)
       document.getElementById('mirror').srcObject = streams
     })
 </script>
